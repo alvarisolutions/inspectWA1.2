@@ -515,7 +515,7 @@ class Inspectors extends React.Component {
                     <meta name="description" content="The Industry Association of Building and Property Inspectors in WA – Inspect WA. Inspect WA’s vision is to be Western Australia’s peak body representing professional independent building and property inspection businesses." />
                 </Helmet>
                 <div style={{display:'flex', flexDirection: 'row', width: '100%', textAlign:'left', padding:5}}>
-                    <div style={{width:'33%', height: 80, padding:10, contentAlign:'center', justifyContent:'center'}}>
+                    <div style={{width:'30%', height: 80, padding:10, contentAlign:'center', justifyContent:'center'}}>
                         <span style={{color:'rgb(150,150,150)', fontSize:10}}>
                             INSPECTOR
                         </span>
@@ -525,7 +525,7 @@ class Inspectors extends React.Component {
                         </span>
                     
                     </div>
-                    <div style={{width:'46%', height: 80, contentAlign:'center', justifyContent:'center'}}>
+                    <div style={{width:'30%', height: 80, contentAlign:'center', justifyContent:'center'}}>
                         <span style={{color:'rgb(150,150,150)', fontSize:10}}>
                             PHONE
                         </span>
@@ -545,7 +545,7 @@ class Inspectors extends React.Component {
                         </a>
                     
                     </div>
-                    <div style={{width:'20%', height: 80, contentAlign:'center', justifyContent:'center'}}>
+                    <div style={{width:'40%', height: 80, contentAlign:'center', justifyContent:'center'}}>
                         <span style={{color:'rgb(150,150,150)', fontSize:10}}>
                             QUALIFICATION
                         </span>
