@@ -51,6 +51,9 @@ import paper23 from '../../assets/files/private/23 Logo Policy.pdf'
 
 import paper24 from '../../assets/files/private/24 Pre Purchase Building Inspection Annexures.pdf'
 
+import paper25 from '../../assets/files/private/25 Restricted access.pdf'
+
+
 
 class Members extends React.Component {
     constructor(props) {
@@ -515,6 +518,17 @@ class Members extends React.Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a rel="noopener noreferrer" target='_blank' href={paper25} style={{textDecoration:'none'}}>
+                                                                    <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                    Restricted access
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                            <td>8th May 2022</td>
+                                                            <td>Final</td>
+                                                        </tr>
                                                         <tr>
                                                             <td>
                                                                 <a rel="noopener noreferrer" target='_blank' href={paper24} style={{textDecoration:'none'}}>

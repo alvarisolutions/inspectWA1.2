@@ -46,6 +46,10 @@ import paper21 from '../../assets/files/public/21 Tie Downs Part 2.pdf'
 
 import paper24 from '../../assets/files/public/24 Pre Purchase Building Inspection Annexures.pdf'
 
+import paper25 from '../../assets/files/public/25 Restricted access.pdf'
+
+
+
 
 class Members extends React.Component {
     constructor(props) {
@@ -186,6 +190,16 @@ class Members extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper25} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Restricted access
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>8th May 2022</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper24} style={{textDecoration:'none'}}>
@@ -417,6 +431,16 @@ class Members extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper25} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Restricted access
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>8th May 2022</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper24} style={{textDecoration:'none'}}>
