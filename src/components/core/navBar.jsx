@@ -77,7 +77,7 @@ class NavBar extends Component {
         return ( 
             <div style={this.styles.bar}>
                 <div style={this.styles.headerLeft}>
-                    <img src={require("../../assets/images/logoLight.png")} style={{height:'10vh', marginTop:'1vh'}}></img>
+                    <img src={require("../../assets/images/logoActual.png")} style={{height:'8vh', margin:'1vh'}}></img>
                 </div>                
                 <div style={this.styles.headerCenter}>
                 </div>

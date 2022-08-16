@@ -215,14 +215,17 @@ class Members extends React.Component {
         //Make the Firebase call
         let ref = firebase.database().ref('/');
         ref.on('value', function(snapshot) {
-            let authCheck = false;            let dataObj = snapshot.val();
+            let authCheck = false;            
+            let dataObj = snapshot.val();
             for(var i = 0; i < dataObj.users.length; i++) {
-                if((that.state.email === dataObj.users[i].email) && (that.state.password === dataObj.users[i].password)) {
-                    that.setState({
-                        loadingVisible: false, 
-                        isAuthenticated: true
-                    })
-                }
+                try {
+                    if((that.state.email === dataObj.users[i].email) && (that.state.password === dataObj.users[i].password)) {
+                        that.setState({
+                            loadingVisible: false, 
+                            isAuthenticated: true
+                        })
+                    }
+                } catch(e) {}
             }
             setTimeout(function(){ 
                 that.setState({
@@ -284,7 +287,7 @@ class Members extends React.Component {
                             <div style={{backgroundColor:'rgba(0,0,0,0.6)', zIndex:20, height:'90vh', marginTop:'10vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                                 <div style={{width:'30%',}}> 
                                 
-                                    <img src={require("../../assets/images/logoLightSub.png")} style={{width:'100%'}}></img>
+                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}}></img>
                                                                     
                                     <span style={{color:'white', fontSize:18,}}>
                                         Complete the form below to change your password
@@ -376,7 +379,7 @@ class Members extends React.Component {
                             <div style={{backgroundColor:'rgba(0,0,0,0.6)', zIndex:20, height:'90vh', marginTop:'10vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
                                 <div style={{width:'30%',}}> 
                                 
-                                    <img src={require("../../assets/images/logoLightSub.png")} style={{width:'100%'}}></img>
+                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}}></img>
                                                                     
                                     <span style={{color:'white', fontSize:18,}}>
                                         Please login to access the members section
@@ -784,7 +787,7 @@ class Members extends React.Component {
                     <div id="background" style={{width:"100%", }}>
                         <NavBarMobile isAuthenticated={this.state.isAuthenticated} authHandler={this.authHandler}/>
                         <div style={{width:'100%',height: '100vh',contentAlign: 'center',textAlign: 'center'}}>   
-                            <img src={require("../../assets/images/logoLightSub.png")} style={{width:'80vw', marginTop:'20vh'}}></img>
+                            <img src={require("../../assets/images/logoActual.png")} style={{width:'80vw', marginTop:'20vh'}}></img>
                             <br></br> 
                             <br></br>
                             <div style={{ display: 'inline-block', width:'90vw'}}>

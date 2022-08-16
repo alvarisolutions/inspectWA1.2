@@ -184,7 +184,7 @@ class NavBarMobile extends Component {
                 
                 </div>
                 <div style={{width:'40vw', textAlign:'right'}}>                
-                    <img src={require("../../assets/images/logoLight.png")} style={{height:'8vh', marginTop:'1.5vh'}}></img>          
+                    <img src={require("../../assets/images/logoActual.png")} style={{height:'8vh', marginTop:'1.5vh'}}></img>          
                 </div>
                     
             </div>

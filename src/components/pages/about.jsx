@@ -119,7 +119,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Elias Oostveen
+                                                Andrew Booth
                                             </span>                                        
                                         </div>      
                                     </div>     
@@ -139,7 +139,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Andrew Booth
+                                                Vacant
                                             </span>                                         
                                         </div>      
                                     </div>     
@@ -195,11 +195,31 @@ class About extends React.Component {
                                                 padding:'1vw'
                                             }}>
                                             <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
-                                                General Committee & Communications
+                                                Communications
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
                                                 Michael Booth
+                                            </span>                                         
+                                        </div> 
+                                    </div>        
+                            
+                                    <div style={{margin:'2vh',}}>   
+                                        <div style={{                                                
+                                                width: '90vw',
+                                                backgroundColor: 'rgb(40,40,40)',
+                                                borderRadius: '2vh',
+                                                display: 'table-cell',
+                                                textAlign: 'center',
+                                                verticalAlign: 'middle',
+                                                padding:'1vw'
+                                            }}>
+                                            <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
+                                                General Committee
+                                            </span>
+                                            <br></br>
+                                            <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
+                                                Peter Barnes
                                             </span>                                         
                                         </div> 
                                     </div>     
@@ -390,7 +410,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Elias Oostveen
+                                                Andrew Booth
                                             </span>                                        
                                         </div>      
                                     </div>     
@@ -411,7 +431,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Andrew Booth
+                                                Vacant
                                             </span>                                        
                                         </div>      
                                     </div>     
@@ -470,11 +490,32 @@ class About extends React.Component {
                                                 padding:'1vw'
                                             }}>
                                             <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
-                                                General Committee & Communications
+                                                Communications
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
                                                 Michael Booth
+                                            </span>                                        
+                                        </div>      
+                                    </div>       
+                            
+                                    <div style={{flex:1}}>   
+                                        <div style={{
+                                                height: '10vw',
+                                                width: '15vw',
+                                                backgroundColor: 'rgb(40,40,40)',
+                                                borderRadius: '10%',
+                                                display: 'table-cell',
+                                                textAlign: 'center',
+                                                verticalAlign: 'middle',
+                                                padding:'1vw'
+                                            }}>
+                                            <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
+                                                General Committee
+                                            </span>
+                                            <br></br>
+                                            <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
+                                                Peter Barnes
                                             </span>                                        
                                         </div>      
                                     </div>     

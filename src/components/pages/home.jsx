@@ -87,7 +87,7 @@ class Home extends Component {
                     <div id="background" style={{width:"100%", }}>
                         <NavBarMobile isAuthenticated={this.state.isAuthenticated} authHandler={this.authHandler}/>
                         <div style={{width:'100%',height: '100vh',contentAlign: 'center',textAlign: 'center'}}>   
-                            <img src={require("../../assets/images/logoLightSub.png")} style={{width:'80vw', marginTop:'20vh'}}></img>
+                            <img src={require("../../assets/images/logoActual.png")} style={{width:'80vw', marginTop:'20vh'}}></img>
                             <br></br> 
                             <br></br>
                             <div style={{ display: 'inline-block', width:'90vw'}}>
@@ -119,7 +119,7 @@ class Home extends Component {
                     <div id="background" style={{width:"100%", }}>
                         <NavBar isAuthenticated={this.state.isAuthenticated} authHandler={this.authHandler}/>
                         <div style={this.styles.banner}>            
-                            <img src={require("../../assets/images/logoLightSub.png")} style={{height:'30vh', marginTop:'20vh'}}></img>  
+                            <img src={require("../../assets/images/logoActual.png")} style={{height:'30vh', marginTop:'20vh'}}></img>  
                             <br></br> 
                             <br></br> 
                             <br></br>
