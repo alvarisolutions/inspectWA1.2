@@ -38,7 +38,6 @@ class Inspectors extends React.Component {
         this.checkBoxPropertyAll = React.createRef();
         this.checkBoxPropertyNone = React.createRef();
 
-
         this.checkBoxType1 = React.createRef();
         this.checkBoxType2 = React.createRef();
         this.checkBoxType3 = React.createRef();
@@ -71,6 +70,12 @@ class Inspectors extends React.Component {
 
         //Initialise state
         this.state = {
+            criteria: {
+                name: '',
+            },
+            criteria1: {
+                name: '',
+            },
             resultCount: 0,
             type1: true,
             type2: true,
@@ -104,10 +109,8 @@ class Inspectors extends React.Component {
 
         }
   
-  
         this.authHandler = this.authHandler.bind(this)
     } 
-  
     
     authHandler(newValue) {
         this.setState({
@@ -162,7 +165,6 @@ class Inspectors extends React.Component {
         return (Math.floor(Math.random() * (max - min + 1)) + min);
     }
     
-
     selectAll = (set) => {
         if(set=='type') {
             this.checkBoxTypeNone.current.checked = false
@@ -238,8 +240,6 @@ class Inspectors extends React.Component {
             this.setState({property5:true})
         }
     }
-
-    
 
     deselectAll = (set) => {
         if(set=='type') {
@@ -352,7 +352,9 @@ class Inspectors extends React.Component {
 
     }
 
-    
+    handleChange = (e) => {
+        this.setState({ ...this.state, criteria: { name: e.target.value }})
+    }
     
     GenerateOpacityMobile = (Name, Phone, Website, Qualification, PIInsurance ) => {
         const fullWebsite = 'http://' + Website
@@ -397,8 +399,7 @@ class Inspectors extends React.Component {
             </div>    
         )
     }
-
-    
+ 
     renderTilesMobile = () => {
         const views = [];
 
@@ -493,9 +494,6 @@ class Inspectors extends React.Component {
                         this.GenerateOpacityMobile(Name, Phone, Website, QualificationString, PIInsurance )
                     );
                 }
-
-                
-                
                 
             }  
         } catch(e) {
@@ -569,13 +567,14 @@ class Inspectors extends React.Component {
         )
     }
 
-
-
     renderTiles = () => {
         const views = [];
         
         try {
+            console.log("search value", this.state.criteria)
             
+
+
             //Randomise the start integer value
             var max = InspectorsObject.length - 1;
             var startInt = this.getRandomInt(0,max);
@@ -585,7 +584,6 @@ class Inspectors extends React.Component {
                 if(i > (InspectorsObject.length-1)) {
                     i = startInt + j - InspectorsObject.length;
                 }
-
 
                 var Name = InspectorsObject[i].Name;
                 var Phone = InspectorsObject[i].Phone;
@@ -658,18 +656,24 @@ class Inspectors extends React.Component {
                     displayIndicator = false;
                 }
 
-
+                if (
+                    InspectorsObject[i].Name.toLowerCase().indexOf(this.state.criteria.name) === -1
+                    &&
+                    InspectorsObject[i].Qualification.toLowerCase().indexOf(this.state.criteria.name) === -1 
+                    &&
+                    InspectorsObject[i].Phone.indexOf(this.state.criteria.name) === -1 
+                    &&
+                    InspectorsObject[i].Website.toLowerCase().indexOf(this.state.criteria.name) === -1
+                ) {
+                    displayIndicator = false
+                }
 
                 if(displayIndicator === true) {
                     
                     views.push(             
                         this.GenerateOpacity(Name, Phone, Website, QualificationString, PIInsurance )
                     );
-                }
-
-                
-                
-                
+                }   
             }  
         } catch(e) {
             //An error has occurred
@@ -678,12 +682,7 @@ class Inspectors extends React.Component {
         return views;
     }
 
-
-    
-    
     renderContent = () => {
-
-
 
         if (isMobile) {
             return (
@@ -702,58 +701,75 @@ class Inspectors extends React.Component {
                                     <div style={{width: '100%',borderRadius: 10,padding: 5, zIndex:5}}>
                                         <div style={{padding:20, textAlign:'center'}}>
                                             <Collapsible trigger="Refine search results" triggerStyle={{backgroundColor:'rgb(220,220,220)', color:'rgb(40,40,40)', padding:10, borderRadius:10, margin:30, cursor:'pointer'}}>
-                                                <div style={{width:'100%', display:'inline-block', padding:0, paddingTop:20,textAlign:'left', marginTop:10}}>    
-                                                    <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Inspection types</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="type-all" ref={this.checkBoxTypeAll} onClick={() => {this.selectAll('type')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="type-none" ref={this.checkBoxTypeNone} onClick={() => {this.deselectAll('type')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Pre purchase Structural <input type="checkbox" id="type-1" ref={this.checkBoxType1} onChange={() => this.checkboxChange('type1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Pre Purchase Building <input type="checkbox" id="type-2" ref={this.checkBoxType2} onChange={() => this.checkboxChange('type2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Staged Construction <input type="checkbox" id="type-3" ref={this.checkBoxType3} onChange={() => this.checkboxChange('type3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Practical Completion <input type="checkbox" id="type-4" ref={this.checkBoxType4} onChange={() => this.checkboxChange('type4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Statutory Defect Liability <input type="checkbox" id="type-5" ref={this.checkBoxType5} onChange={() => this.checkboxChange('type5')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Builders Indemnity <input type="checkbox" id="type-6" ref={this.checkBoxType6} onChange={() => this.checkboxChange('type6')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Dilapidation Inspection <input type="checkbox" id="type-7" ref={this.checkBoxType7} onChange={() => this.checkboxChange('type7')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Investigation <input type="checkbox" id="type-8" ref={this.checkBoxType8} onChange={() => this.checkboxChange('type8')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Maintenance Inspection <input type="checkbox" id="type-9" ref={this.checkBoxType9} onChange={() => this.checkboxChange('type9')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">WA Building Commission Independent Expert <input type="checkbox" id="type-10" ref={this.checkBoxType10} onChange={() => this.checkboxChange('type10')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">State Administrative Tribunal Independent Expert <input type="checkbox" id="type-11" ref={this.checkBoxType11} onChange={() => this.checkboxChange('type11')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Litigation - Independent Expert Opinion<input type="checkbox" id="type-12" ref={this.checkBoxType12} onChange={() => this.checkboxChange('type12')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Special Purpose Inspection <input type="checkbox" id="type-13" ref={this.checkBoxType13} onChange={() => this.checkboxChange('type13')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                    <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Locations</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="location-all" ref={this.checkBoxLocationAll} onClick={() => {this.selectAll('location')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="location-none" ref={this.checkBoxLocationNone} onClick={() => {this.deselectAll('location')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Perth Metropolitan Area<input type="checkbox" id="location-1" ref={this.checkBoxLocation1} onChange={() => this.checkboxChange('location1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Bunbury<input type="checkbox" id="location-2" ref={this.checkBoxLocation2} onChange={() => this.checkboxChange('location2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Mandurah<input type="checkbox" id="location-3" ref={this.checkBoxLocation3} onChange={() => this.checkboxChange('location3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Margaret River<input type="checkbox" id="location-4" ref={this.checkBoxLocation4} onChange={() => this.checkboxChange('location4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Busselton<input type="checkbox" id="location-5" ref={this.checkBoxLocation5} onChange={() => this.checkboxChange('location5')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Great Southern<input type="checkbox" id="location-7" ref={this.checkBoxLocation7} onChange={() => this.checkboxChange('location7')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Goldfields - Esperance<input type="checkbox" id="location-8" ref={this.checkBoxLocation8} onChange={() => this.checkboxChange('location8')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Wheat Belt<input type="checkbox" id="location-9" ref={this.checkBoxLocation9} onChange={() => this.checkboxChange('location9')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Mid-West<input type="checkbox" id="location-10" ref={this.checkBoxLocation10} onChange={() => this.checkboxChange('location10')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Pilbara<input type="checkbox" id="location-11" ref={this.checkBoxLocation11} onChange={() => this.checkboxChange('location11')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Kimberley<input type="checkbox" id="location-12" ref={this.checkBoxLocation12} onChange={() => this.checkboxChange('location12')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                    <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Property types</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="property-all" ref={this.checkBoxPropertyAll} onClick={() => {this.selectAll('property')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="property-none" ref={this.checkBoxPropertyNone} onClick={() => {this.deselectAll('property')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Residential<input type="checkbox" id="property-1" ref={this.checkBoxProperty1} onChange={() => this.checkboxChange('property1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Apartment – Individual Lots <input type="checkbox" id="property-2" ref={this.checkBoxProperty2} onChange={() => this.checkboxChange('property2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Commercial<input type="checkbox" id="property-3" ref={this.checkBoxProperty3} onChange={() => this.checkboxChange('property3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Industrial<input type="checkbox" id="property-4" ref={this.checkBoxProperty4} onChange={() => this.checkboxChange('property4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Strata – Entire Complex<input type="checkbox" id="property-5" ref={this.checkBoxProperty5} onChange={() => this.checkboxChange('property5')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                </div>  
+                                                <div style={{width:'100%', display:'flex', flexDirection:"column", padding:20, paddingBottom:0, textAlign:'left', marginTop:10}}>
+                                                    <div style={{width:'100%', padding:20}}>
+                                                        <input 
+                                                            style={{
+                                                                width: "33%",
+                                                                border: "none",
+                                                                outline: "none",
+                                                                padding: "8px 15px",
+                                                                borderRadius: "5px",
+                                                                color: "#1a1717",
+                                                            }}      
+                                                            type="search" 
+                                                            placeholder="Search for inspector name, phone number, website etc.."
+                                                            onChange={this.handleChange}
+                                                        />
+                                                    </div>
+                                                    <div style={{width:'100%', display:'flex', padding:"0px 20px", textAlign:'left'}}>    
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Inspection types</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="type-all" ref={this.checkBoxTypeAll} onClick={() => {this.selectAll('type')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="type-none" ref={this.checkBoxTypeNone} onClick={() => {this.deselectAll('type')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Pre purchase Structural <input type="checkbox" id="type-1" ref={this.checkBoxType1} onChange={() => this.checkboxChange('type1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Pre Purchase Building <input type="checkbox" id="type-2" ref={this.checkBoxType2} onChange={() => this.checkboxChange('type2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Staged Construction <input type="checkbox" id="type-3" ref={this.checkBoxType3} onChange={() => this.checkboxChange('type3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Practical Completion <input type="checkbox" id="type-4" ref={this.checkBoxType4} onChange={() => this.checkboxChange('type4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Statutory Defect Liability <input type="checkbox" id="type-5" ref={this.checkBoxType5} onChange={() => this.checkboxChange('type5')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Builders Indemnity <input type="checkbox" id="type-6" ref={this.checkBoxType6} onChange={() => this.checkboxChange('type6')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Dilapidation Inspection <input type="checkbox" id="type-7" ref={this.checkBoxType7} onChange={() => this.checkboxChange('type7')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Investigation <input type="checkbox" id="type-8" ref={this.checkBoxType8} onChange={() => this.checkboxChange('type8')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Maintenance Inspection <input type="checkbox" id="type-9" ref={this.checkBoxType9} onChange={() => this.checkboxChange('type9')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">WA Building Commission Independent Expert <input type="checkbox" id="type-10" ref={this.checkBoxType10} onChange={() => this.checkboxChange('type10')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">State Administrative Tribunal Independent Expert <input type="checkbox" id="type-11" ref={this.checkBoxType11} onChange={() => this.checkboxChange('type11')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Litigation - Independent Expert Opinion<input type="checkbox" id="type-12" ref={this.checkBoxType12} onChange={() => this.checkboxChange('type12')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Special Purpose Inspection <input type="checkbox" id="type-13" ref={this.checkBoxType13} onChange={() => this.checkboxChange('type13')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Locations</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="location-all" ref={this.checkBoxLocationAll} onClick={() => {this.selectAll('location')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="location-none" ref={this.checkBoxLocationNone} onClick={() => {this.deselectAll('location')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Perth Metropolitan Area<input type="checkbox" id="location-1" ref={this.checkBoxLocation1} onChange={() => this.checkboxChange('location1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Bunbury<input type="checkbox" id="location-2" ref={this.checkBoxLocation2} onChange={() => this.checkboxChange('location2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Mandurah<input type="checkbox" id="location-3" ref={this.checkBoxLocation3} onChange={() => this.checkboxChange('location3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Margaret River<input type="checkbox" id="location-4" ref={this.checkBoxLocation4} onChange={() => this.checkboxChange('location4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Busselton<input type="checkbox" id="location-5" ref={this.checkBoxLocation5} onChange={() => this.checkboxChange('location5')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Great Southern<input type="checkbox" id="location-7" ref={this.checkBoxLocation7} onChange={() => this.checkboxChange('location7')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Goldfields - Esperance<input type="checkbox" id="location-8" ref={this.checkBoxLocation8} onChange={() => this.checkboxChange('location8')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Wheat Belt<input type="checkbox" id="location-9" ref={this.checkBoxLocation9} onChange={() => this.checkboxChange('location9')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Mid-West<input type="checkbox" id="location-10" ref={this.checkBoxLocation10} onChange={() => this.checkboxChange('location10')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Pilbara<input type="checkbox" id="location-11" ref={this.checkBoxLocation11} onChange={() => this.checkboxChange('location11')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Kimberley<input type="checkbox" id="location-12" ref={this.checkBoxLocation12} onChange={() => this.checkboxChange('location12')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Property types</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="property-all" ref={this.checkBoxPropertyAll} onClick={() => {this.selectAll('property')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="property-none" ref={this.checkBoxPropertyNone} onClick={() => {this.deselectAll('property')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Residential<input type="checkbox" id="property-1" ref={this.checkBoxProperty1} onChange={() => this.checkboxChange('property1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Apartment – Individual Lots <input type="checkbox" id="property-2" ref={this.checkBoxProperty2} onChange={() => this.checkboxChange('property2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Commercial<input type="checkbox" id="property-3" ref={this.checkBoxProperty3} onChange={() => this.checkboxChange('property3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Industrial<input type="checkbox" id="property-4" ref={this.checkBoxProperty4} onChange={() => this.checkboxChange('property4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Strata – Entire Complex<input type="checkbox" id="property-5" ref={this.checkBoxProperty5} onChange={() => this.checkboxChange('property5')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                    </div>
+                                                </div>
                                             </Collapsible>
                                         </div>
                                         
@@ -793,58 +809,81 @@ class Inspectors extends React.Component {
                                     <div style={{width: '100%',borderRadius: 10,backgroundColor: 'rgba(100,100,100,0.2)',padding: 20, zIndex:5}}>
                                         <div style={{padding:30, textAlign:'center'}}>
                                             <Collapsible trigger="Refine search results" triggerStyle={{backgroundColor:'rgb(220,220,220)', color:'rgb(40,40,40)', padding:20, borderRadius:10, margin:30, cursor:'pointer'}}>
-                                                <div style={{width:'100%', display:'flex', padding:20, paddingBottom:0, textAlign:'left', marginTop:10}}>    
-                                                    <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Inspection types</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="type-all" ref={this.checkBoxTypeAll} onClick={() => {this.selectAll('type')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="type-none" ref={this.checkBoxTypeNone} onClick={() => {this.deselectAll('type')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Pre purchase Structural <input type="checkbox" id="type-1" ref={this.checkBoxType1} onChange={() => this.checkboxChange('type1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Pre Purchase Building <input type="checkbox" id="type-2" ref={this.checkBoxType2} onChange={() => this.checkboxChange('type2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Staged Construction <input type="checkbox" id="type-3" ref={this.checkBoxType3} onChange={() => this.checkboxChange('type3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Practical Completion <input type="checkbox" id="type-4" ref={this.checkBoxType4} onChange={() => this.checkboxChange('type4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Statutory Defect Liability <input type="checkbox" id="type-5" ref={this.checkBoxType5} onChange={() => this.checkboxChange('type5')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Builders Indemnity <input type="checkbox" id="type-6" ref={this.checkBoxType6} onChange={() => this.checkboxChange('type6')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Dilapidation Inspection <input type="checkbox" id="type-7" ref={this.checkBoxType7} onChange={() => this.checkboxChange('type7')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Investigation <input type="checkbox" id="type-8" ref={this.checkBoxType8} onChange={() => this.checkboxChange('type8')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Maintenance Inspection <input type="checkbox" id="type-9" ref={this.checkBoxType9} onChange={() => this.checkboxChange('type9')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">WA Building Commission Independent Expert <input type="checkbox" id="type-10" ref={this.checkBoxType10} onChange={() => this.checkboxChange('type10')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">State Administrative Tribunal Independent Expert <input type="checkbox" id="type-11" ref={this.checkBoxType11} onChange={() => this.checkboxChange('type11')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Litigation - Independent Expert Opinion<input type="checkbox" id="type-12" ref={this.checkBoxType12} onChange={() => this.checkboxChange('type12')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Special Purpose Inspection <input type="checkbox" id="type-13" ref={this.checkBoxType13} onChange={() => this.checkboxChange('type13')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                    <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Locations</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="location-all" ref={this.checkBoxLocationAll} onClick={() => {this.selectAll('location')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="location-none" ref={this.checkBoxLocationNone} onClick={() => {this.deselectAll('location')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Perth Metropolitan Area<input type="checkbox" id="location-1" ref={this.checkBoxLocation1} onChange={() => this.checkboxChange('location1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Bunbury<input type="checkbox" id="location-2" ref={this.checkBoxLocation2} onChange={() => this.checkboxChange('location2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Mandurah<input type="checkbox" id="location-3" ref={this.checkBoxLocation3} onChange={() => this.checkboxChange('location3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Margaret River<input type="checkbox" id="location-4" ref={this.checkBoxLocation4} onChange={() => this.checkboxChange('location4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Busselton<input type="checkbox" id="location-5" ref={this.checkBoxLocation5} onChange={() => this.checkboxChange('location5')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Great Southern<input type="checkbox" id="location-7" ref={this.checkBoxLocation7} onChange={() => this.checkboxChange('location7')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Goldfields - Esperance<input type="checkbox" id="location-8" ref={this.checkBoxLocation8} onChange={() => this.checkboxChange('location8')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Wheat Belt<input type="checkbox" id="location-9" ref={this.checkBoxLocation9} onChange={() => this.checkboxChange('location9')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Mid-West<input type="checkbox" id="location-10" ref={this.checkBoxLocation10} onChange={() => this.checkboxChange('location10')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Pilbara<input type="checkbox" id="location-11" ref={this.checkBoxLocation11} onChange={() => this.checkboxChange('location11')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Kimberley<input type="checkbox" id="location-12" ref={this.checkBoxLocation12} onChange={() => this.checkboxChange('location12')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                    <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
-                                                        <p style={{fontSize:'1.5rem'}}>Property types</p>
-                                                        
-                                                        <label className="container">Select all<input type="checkbox" id="property-all" ref={this.checkBoxPropertyAll} onClick={() => {this.selectAll('property')}}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Deselect all<input type="checkbox" id="property-none" ref={this.checkBoxPropertyNone} onClick={() => {this.deselectAll('property')}}></input><span className="checkmark"></span></label>
-                                                        <br></br>
-                                                        <label className="container">Residential<input type="checkbox" id="property-1" ref={this.checkBoxProperty1} onChange={() => this.checkboxChange('property1')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Apartment – Individual Lots <input type="checkbox" id="property-2" ref={this.checkBoxProperty2} onChange={() => this.checkboxChange('property2')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Commercial<input type="checkbox" id="property-3" ref={this.checkBoxProperty3} onChange={() => this.checkboxChange('property3')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Industrial<input type="checkbox" id="property-4" ref={this.checkBoxProperty4} onChange={() => this.checkboxChange('property4')}></input><span className="checkmark"></span></label>
-                                                        <label className="container">Strata – Entire Complex<input type="checkbox" id="property-5" ref={this.checkBoxProperty5} onChange={() => this.checkboxChange('property5')}></input><span className="checkmark"></span></label>
-                                                    </div> 
-                                                </div>  
+                                                <div style={{width:'100%', display:'flex', flexDirection:"column", padding:20, paddingBottom:0, textAlign:'left', marginTop:10}}>
+                                                    
+                                                    <div style={{width:'100%', display:'flex', padding:"0px 20px", textAlign:'left'}}>    
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Inspector search</p>
+                                                            <div style={{width:'100%', padding:20}}>
+                                                                <input 
+                                                                    style={{
+                                                                        width: "33%",
+                                                                        border: "none",
+                                                                        outline: "none",
+                                                                        padding: "8px 15px",
+                                                                        borderRadius: "5px",
+                                                                        color: "#1a1717",
+                                                                    }}      
+                                                                    type="search" 
+                                                                    placeholder="Search for inspector name, phone number, website etc.."
+                                                                    onChange={this.handleChange}
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div style={{width:'100%', display:'flex', padding:"0px 20px", textAlign:'left'}}>    
+                                                        <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Inspection types</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="type-all" ref={this.checkBoxTypeAll} onClick={() => {this.selectAll('type')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="type-none" ref={this.checkBoxTypeNone} onClick={() => {this.deselectAll('type')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Pre purchase Structural <input type="checkbox" id="type-1" ref={this.checkBoxType1} onChange={() => this.checkboxChange('type1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Pre Purchase Building <input type="checkbox" id="type-2" ref={this.checkBoxType2} onChange={() => this.checkboxChange('type2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Staged Construction <input type="checkbox" id="type-3" ref={this.checkBoxType3} onChange={() => this.checkboxChange('type3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Practical Completion <input type="checkbox" id="type-4" ref={this.checkBoxType4} onChange={() => this.checkboxChange('type4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Statutory Defect Liability <input type="checkbox" id="type-5" ref={this.checkBoxType5} onChange={() => this.checkboxChange('type5')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Builders Indemnity <input type="checkbox" id="type-6" ref={this.checkBoxType6} onChange={() => this.checkboxChange('type6')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Dilapidation Inspection <input type="checkbox" id="type-7" ref={this.checkBoxType7} onChange={() => this.checkboxChange('type7')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Investigation <input type="checkbox" id="type-8" ref={this.checkBoxType8} onChange={() => this.checkboxChange('type8')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Maintenance Inspection <input type="checkbox" id="type-9" ref={this.checkBoxType9} onChange={() => this.checkboxChange('type9')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">WA Building Commission Independent Expert <input type="checkbox" id="type-10" ref={this.checkBoxType10} onChange={() => this.checkboxChange('type10')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">State Administrative Tribunal Independent Expert <input type="checkbox" id="type-11" ref={this.checkBoxType11} onChange={() => this.checkboxChange('type11')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Litigation - Independent Expert Opinion<input type="checkbox" id="type-12" ref={this.checkBoxType12} onChange={() => this.checkboxChange('type12')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Special Purpose Inspection <input type="checkbox" id="type-13" ref={this.checkBoxType13} onChange={() => this.checkboxChange('type13')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                        <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Locations</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="location-all" ref={this.checkBoxLocationAll} onClick={() => {this.selectAll('location')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="location-none" ref={this.checkBoxLocationNone} onClick={() => {this.deselectAll('location')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Perth Metropolitan Area<input type="checkbox" id="location-1" ref={this.checkBoxLocation1} onChange={() => this.checkboxChange('location1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Bunbury<input type="checkbox" id="location-2" ref={this.checkBoxLocation2} onChange={() => this.checkboxChange('location2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Mandurah<input type="checkbox" id="location-3" ref={this.checkBoxLocation3} onChange={() => this.checkboxChange('location3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Margaret River<input type="checkbox" id="location-4" ref={this.checkBoxLocation4} onChange={() => this.checkboxChange('location4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Busselton<input type="checkbox" id="location-5" ref={this.checkBoxLocation5} onChange={() => this.checkboxChange('location5')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Great Southern<input type="checkbox" id="location-7" ref={this.checkBoxLocation7} onChange={() => this.checkboxChange('location7')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Goldfields - Esperance<input type="checkbox" id="location-8" ref={this.checkBoxLocation8} onChange={() => this.checkboxChange('location8')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Wheat Belt<input type="checkbox" id="location-9" ref={this.checkBoxLocation9} onChange={() => this.checkboxChange('location9')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Mid-West<input type="checkbox" id="location-10" ref={this.checkBoxLocation10} onChange={() => this.checkboxChange('location10')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Pilbara<input type="checkbox" id="location-11" ref={this.checkBoxLocation11} onChange={() => this.checkboxChange('location11')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Kimberley<input type="checkbox" id="location-12" ref={this.checkBoxLocation12} onChange={() => this.checkboxChange('location12')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                        <div style={{width:'32%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                            <p style={{fontSize:'1.5rem'}}>Property types</p>
+                                                            
+                                                            <label className="container">Select all<input type="checkbox" id="property-all" ref={this.checkBoxPropertyAll} onClick={() => {this.selectAll('property')}}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Deselect all<input type="checkbox" id="property-none" ref={this.checkBoxPropertyNone} onClick={() => {this.deselectAll('property')}}></input><span className="checkmark"></span></label>
+                                                            <br></br>
+                                                            <label className="container">Residential<input type="checkbox" id="property-1" ref={this.checkBoxProperty1} onChange={() => this.checkboxChange('property1')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Apartment – Individual Lots <input type="checkbox" id="property-2" ref={this.checkBoxProperty2} onChange={() => this.checkboxChange('property2')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Commercial<input type="checkbox" id="property-3" ref={this.checkBoxProperty3} onChange={() => this.checkboxChange('property3')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Industrial<input type="checkbox" id="property-4" ref={this.checkBoxProperty4} onChange={() => this.checkboxChange('property4')}></input><span className="checkmark"></span></label>
+                                                            <label className="container">Strata – Entire Complex<input type="checkbox" id="property-5" ref={this.checkBoxProperty5} onChange={() => this.checkboxChange('property5')}></input><span className="checkmark"></span></label>
+                                                        </div> 
+                                                    </div>  
+                                                </div>
                                             </Collapsible>
                                         </div>
                                         
