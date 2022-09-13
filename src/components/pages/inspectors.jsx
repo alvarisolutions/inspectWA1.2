@@ -701,11 +701,11 @@ class Inspectors extends React.Component {
                                     <div style={{width: '100%',borderRadius: 10,padding: 5, zIndex:5}}>
                                         <div style={{padding:20, textAlign:'center'}}>
                                             <Collapsible trigger="Refine search results" triggerStyle={{backgroundColor:'rgb(220,220,220)', color:'rgb(40,40,40)', padding:10, borderRadius:10, margin:30, cursor:'pointer'}}>
-                                                <div style={{width:'100%', display:'flex', flexDirection:"column", padding:20, paddingBottom:0, textAlign:'left', marginTop:10}}>
+                                                <div style={{width:'100%', display:'flex', flexDirection:"column", padding:5, paddingBottom:0, textAlign:'left', marginTop:10}}>
                                                     <div style={{width:'100%', padding:20}}>
                                                         <input 
                                                             style={{
-                                                                width: "33%",
+                                                                width: "100%",
                                                                 border: "none",
                                                                 outline: "none",
                                                                 padding: "8px 15px",
@@ -717,8 +717,8 @@ class Inspectors extends React.Component {
                                                             onChange={this.handleChange}
                                                         />
                                                     </div>
-                                                    <div style={{width:'100%', display:'flex', padding:"0px 20px", textAlign:'left'}}>    
-                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                    <div style={{width:'100%', display:'flex', flexDirection:'column', padding:"0px 5px", textAlign:'left'}}>    
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'2vh'}}>
                                                             <p style={{fontSize:'1.5rem'}}>Inspection types</p>
                                                             
                                                             <label className="container">Select all<input type="checkbox" id="type-all" ref={this.checkBoxTypeAll} onClick={() => {this.selectAll('type')}}></input><span className="checkmark"></span></label>
@@ -738,7 +738,7 @@ class Inspectors extends React.Component {
                                                             <label className="container">Litigation - Independent Expert Opinion<input type="checkbox" id="type-12" ref={this.checkBoxType12} onChange={() => this.checkboxChange('type12')}></input><span className="checkmark"></span></label>
                                                             <label className="container">Special Purpose Inspection <input type="checkbox" id="type-13" ref={this.checkBoxType13} onChange={() => this.checkboxChange('type13')}></input><span className="checkmark"></span></label>
                                                         </div> 
-                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, marginRight:'2%', fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'2vh'}}>
                                                             <p style={{fontSize:'1.5rem'}}>Locations</p>
                                                             
                                                             <label className="container">Select all<input type="checkbox" id="location-all" ref={this.checkBoxLocationAll} onClick={() => {this.selectAll('location')}}></input><span className="checkmark"></span></label>
@@ -756,7 +756,7 @@ class Inspectors extends React.Component {
                                                             <label className="container">Pilbara<input type="checkbox" id="location-11" ref={this.checkBoxLocation11} onChange={() => this.checkboxChange('location11')}></input><span className="checkmark"></span></label>
                                                             <label className="container">Kimberley<input type="checkbox" id="location-12" ref={this.checkBoxLocation12} onChange={() => this.checkboxChange('location12')}></input><span className="checkmark"></span></label>
                                                         </div> 
-                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'4vh'}}>
+                                                        <div style={{width:'100%', backgroundColor:'rgba(255,255,255,0.1)', borderRadius:10, padding:10, fontSize:'0.8rem', marginTop:'1vh', marginBottom:'2vh'}}>
                                                             <p style={{fontSize:'1.5rem'}}>Property types</p>
                                                             
                                                             <label className="container">Select all<input type="checkbox" id="property-all" ref={this.checkBoxPropertyAll} onClick={() => {this.selectAll('property')}}></input><span className="checkmark"></span></label>
