@@ -48,6 +48,8 @@ import paper24 from '../../assets/files/public/24 Pre Purchase Building Inspecti
 
 import paper25 from '../../assets/files/public/25 Restricted access.pdf'
 
+import paper26 from '../../assets/files/public/26 Inspector engagement with builders on site.pdf'
+
 
 
 
@@ -189,7 +191,18 @@ class Members extends React.Component {
                                                     <th>Date modified</th>
                                                 </tr>
                                             </thead>
+                                            
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper26} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Inspector engagement with builders on site
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>19th November 2022</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper25} style={{textDecoration:'none'}}>
@@ -431,6 +444,16 @@ class Members extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper26} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Inspector engagement with builders on site
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>19th November 2022</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper25} style={{textDecoration:'none'}}>
