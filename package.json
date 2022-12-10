@@ -7,7 +7,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.10.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
     "auth0-lock": "^11.17.1",
-    "firebase": "^7.5.0",
+    "firebase": "^9.15.0",
     "react": "^16.8.6",
     "react-burger-menu": "^2.6.11",
     "react-collapsible": "^2.6.0",
