@@ -135,11 +135,11 @@ class About extends React.Component {
                                                 padding:'1vw'
                                             }}>
                                             <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
-                                                Deputy Chairman
+                                                Deputy Chairman & Secretary
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Vacant
+                                                Dave Clark
                                             </span>                                         
                                         </div>      
                                     </div>     
@@ -163,27 +163,7 @@ class About extends React.Component {
                                             </span>                                        
                                         </div>      
                                     </div>     
-                            
-                                    <div style={{margin:'2vh',}}>   
-                                        <div style={{
-                                                width: '90vw',
-                                                backgroundColor: 'rgb(40,40,40)',
-                                                borderRadius: '2vh',
-                                                display: 'table-cell',
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                padding:'1vw'
-                                            }}>
-                                            <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
-                                                Secretary
-                                            </span>
-                                            <br></br>
-                                            <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Dave Clark
-                                            </span>                                         
-                                        </div>     
-                                    </div>     
-                            
+
                                     <div style={{margin:'2vh',}}>   
                                         <div style={{                                                
                                                 width: '90vw',
@@ -199,7 +179,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Michael Booth
+                                                Phil Lean
                                             </span>                                         
                                         </div> 
                                     </div>        
@@ -220,6 +200,26 @@ class About extends React.Component {
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
                                                 Peter Barnes
+                                            </span>                                         
+                                        </div> 
+                                    </div>         
+                            
+                                    <div style={{margin:'2vh',}}>   
+                                        <div style={{                                                
+                                                width: '90vw',
+                                                backgroundColor: 'rgb(40,40,40)',
+                                                borderRadius: '2vh',
+                                                display: 'table-cell',
+                                                textAlign: 'center',
+                                                verticalAlign: 'middle',
+                                                padding:'1vw'
+                                            }}>
+                                            <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
+                                                General Committee
+                                            </span>
+                                            <br></br>
+                                            <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
+                                                Paul Cable
                                             </span>                                         
                                         </div> 
                                     </div>     
@@ -427,11 +427,11 @@ class About extends React.Component {
                                                 padding:'1vw'
                                             }}>
                                             <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
-                                                Deputy Chairman
+                                                Deputy Chairman & Secretary
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Vacant
+                                                Dave Clark
                                             </span>                                        
                                         </div>      
                                     </div>     
@@ -456,27 +456,6 @@ class About extends React.Component {
                                             </span>                                        
                                         </div>      
                                     </div>     
-                                    
-                                    <div style={{flex:1}}>   
-                                        <div style={{
-                                                height: '10vw',
-                                                width: '15vw',
-                                                backgroundColor: 'rgb(40,40,40)',
-                                                borderRadius: '10%',
-                                                display: 'table-cell',
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                padding:'1vw'
-                                            }}>
-                                            <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
-                                                Secretary
-                                            </span>
-                                            <br></br>
-                                            <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Dave Clark
-                                            </span>                                        
-                                        </div>      
-                                    </div>     
                             
                                     <div style={{flex:1}}>   
                                         <div style={{
@@ -494,7 +473,7 @@ class About extends React.Component {
                                             </span>
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Michael Booth
+                                                Phil Lean
                                             </span>                                        
                                         </div>      
                                     </div>       
@@ -516,6 +495,27 @@ class About extends React.Component {
                                             <br></br>
                                             <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
                                                 Peter Barnes
+                                            </span>                                        
+                                        </div>      
+                                    </div>     
+                            
+                                    <div style={{flex:1}}>   
+                                        <div style={{
+                                                height: '10vw',
+                                                width: '15vw',
+                                                backgroundColor: 'rgb(40,40,40)',
+                                                borderRadius: '10%',
+                                                display: 'table-cell',
+                                                textAlign: 'center',
+                                                verticalAlign: 'middle',
+                                                padding:'1vw'
+                                            }}>
+                                            <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
+                                                General Committee
+                                            </span>
+                                            <br></br>
+                                            <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
+                                                Paul Cable
                                             </span>                                        
                                         </div>      
                                     </div>     

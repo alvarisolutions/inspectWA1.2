@@ -414,17 +414,6 @@ class Members extends React.Component {
                                     
                                     <div style={{width:'100%', textAlign:'center', display:'flex', justifyContent:'center'}}>
                                         <div 
-                                            style={{padding:5, backgroundColor:'rgb(52,152,219)', borderRadius:5, color:'white', width:'40%', cursor:'pointer'}} 
-                                            onClick={this.changePasswordShow} >                         
-                                            <span style={{color:'white'}}>
-                                                Change password
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <br />
-                                    
-                                    <div style={{width:'100%', textAlign:'center', display:'flex', justifyContent:'center'}}>
-                                        <div 
                                             style={{padding:10, backgroundColor:'#4CAF50', borderRadius:5, color:'white', width:'40%', cursor:'pointer'}} 
                                             onClick={this.submitLogin} >                         
                                             <span style={{color:'white'}}>
