@@ -182,27 +182,7 @@ class About extends React.Component {
                                                 Phil Lean
                                             </span>                                         
                                         </div> 
-                                    </div>        
-                            
-                                    <div style={{margin:'2vh',}}>   
-                                        <div style={{                                                
-                                                width: '90vw',
-                                                backgroundColor: 'rgb(40,40,40)',
-                                                borderRadius: '2vh',
-                                                display: 'table-cell',
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                padding:'1vw'
-                                            }}>
-                                            <span style={{color:'rgb(100,100,100)', fontSize:'2vh'}}>
-                                                General Committee
-                                            </span>
-                                            <br></br>
-                                            <span style={{color:'rgb(200,200,200)', fontSize:'3vh'}}>
-                                                Peter Barnes
-                                            </span>                                         
-                                        </div> 
-                                    </div>         
+                                    </div>           
                             
                                     <div style={{margin:'2vh',}}>   
                                         <div style={{                                                
@@ -476,28 +456,7 @@ class About extends React.Component {
                                                 Phil Lean
                                             </span>                                        
                                         </div>      
-                                    </div>       
-                            
-                                    <div style={{flex:1}}>   
-                                        <div style={{
-                                                height: '10vw',
-                                                width: '15vw',
-                                                backgroundColor: 'rgb(40,40,40)',
-                                                borderRadius: '10%',
-                                                display: 'table-cell',
-                                                textAlign: 'center',
-                                                verticalAlign: 'middle',
-                                                padding:'1vw'
-                                            }}>
-                                            <span style={{color:'rgb(100,100,100)', fontSize:'1vw'}}>
-                                                General Committee
-                                            </span>
-                                            <br></br>
-                                            <span style={{color:'rgb(200,200,200)', fontSize:'1.5vw'}}>
-                                                Peter Barnes
-                                            </span>                                        
-                                        </div>      
-                                    </div>     
+                                    </div>          
                             
                                     <div style={{flex:1}}>   
                                         <div style={{
