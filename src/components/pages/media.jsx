@@ -50,6 +50,8 @@ import paper25 from '../../assets/files/public/25 Restricted access.pdf'
 
 import paper26 from '../../assets/files/public/26 Inspector engagement with builders on site.pdf'
 
+import paper27 from '../../assets/files/public/27 Restricted Access Revised.pdf'
+
 
 
 
@@ -193,6 +195,16 @@ class Members extends React.Component {
                                             </thead>
                                             
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Restricted Access Revised
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>7th July 2023</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper26} style={{textDecoration:'none'}}>
@@ -444,6 +456,16 @@ class Members extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Restricted Access Revised
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>7th July 2023</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper26} style={{textDecoration:'none'}}>
