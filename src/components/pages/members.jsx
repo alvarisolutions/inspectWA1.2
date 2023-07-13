@@ -55,7 +55,7 @@ import paper25 from '../../assets/files/private/25 Restricted access.pdf'
 
 import paper26 from '../../assets/files/private/26 Inspector engagement with builders on site.pdf'
 
-import paper27 from '../../assets/files/private/27 Restricted Access Revised.pdf'
+import paper27 from '../../assets/files/private/27 Residential Property Purchase Contract - Observations.pdf'
 
 
 
@@ -520,7 +520,7 @@ class Members extends React.Component {
                                                             <td>
                                                                 <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>
                                                                     <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
-                                                                        Restricted Access Revised
+                                                                        Residential Property Purchase Contract - Observations
                                                                     </span>
                                                                 </a>
                                                             </td>
