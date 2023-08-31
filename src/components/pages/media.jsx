@@ -52,6 +52,9 @@ import paper26 from '../../assets/files/public/26 Inspector engagement with buil
 
 import paper27 from '../../assets/files/public/27 Residential Property Purchase Contract - Observations.pdf'
 
+import paper28 from '../../assets/files/public/28 Access for Pre Purcahse Building Inspections.pdf'
+
+
 
 
 
@@ -195,6 +198,16 @@ class Members extends React.Component {
                                             </thead>
                                             
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper28} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Access for Pre Purchase Building Inspections
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>1st September 2023</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>
@@ -456,6 +469,16 @@ class Members extends React.Component {
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <a rel="noopener noreferrer" target='_blank' href={paper28} style={{textDecoration:'none'}}>
+                                                            <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                Access for Pre Purchase Building Inspections
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                    <td>1st September 2023</td>
+                                                </tr>
                                                 <tr>
                                                     <td>
                                                         <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>

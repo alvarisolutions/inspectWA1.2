@@ -57,6 +57,7 @@ import paper26 from '../../assets/files/private/26 Inspector engagement with bui
 
 import paper27 from '../../assets/files/private/27 Residential Property Purchase Contract - Observations.pdf'
 
+import paper28 from  '../../assets/files/private/28 Access for Pre Purcahse Building Inspections.pdf'
 
 
 class Members extends React.Component {
@@ -516,6 +517,17 @@ class Members extends React.Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <a rel="noopener noreferrer" target='_blank' href={paper28} style={{textDecoration:'none'}}>
+                                                                    <span style={{textDecorationColor:'rgba(0,0,0,0)', color:'white'}}>
+                                                                        Access for Pre Purchase Building Inspections
+                                                                    </span>
+                                                                </a>
+                                                            </td>
+                                                            <td>1st September 2023</td>
+                                                            <td>Final</td>
+                                                        </tr>
                                                         <tr>
                                                             <td>
                                                                 <a rel="noopener noreferrer" target='_blank' href={paper27} style={{textDecoration:'none'}}>
