@@ -514,51 +514,46 @@ class Inspectors extends React.Component {
                 </Helmet>
                 <div style={{display:'flex', flexDirection: 'row', width: '100%', textAlign:'left', padding:5}}>
                     <div style={{width:'30%', padding:10, contentAlign:'center', justifyContent:'center'}}>
-                        <span style={{color:'rgb(150,150,150)', fontSize:10}}>
+                        <p style={{color:'rgb(150,150,150)', fontSize:10, marginBottom:5}}>
                             INSPECTOR
-                        </span>
-                        <br></br>
-                        <span style={{color:'white', fontSize:30}}>
+                        </p>
+                        <p style={{color:'white', fontSize:30}}>
                             {Name}
-                        </span>
+                        </p>
                     
                     </div>
                     <div style={{width:'30%', contentAlign:'center', justifyContent:'center'}}>
-                        <span style={{color:'rgb(150,150,150)', fontSize:10}}>
+                        <p style={{color:'rgb(150,150,150)', fontSize:10, marginBottom:0}}>
                             PHONE
-                        </span>
-                        <br></br>
-                        <span style={{color:'white', fontSize:16}}>
+                        </p>
+                        <p style={{color:'white', fontSize:16}}>
                             {Phone}
-                        </span>
+                        </p>
                         <br></br>
-                        <span style={{color:'rgb(150,150,150)', fontSize:10}}>
+                        <p style={{color:'rgb(150,150,150)', fontSize:10, marginBottom:0}}>
                             WEBSITE
-                        </span>
-                        <br></br>
+                        </p>
                         <a href={fullWebsite} target='_blank'>
-                            <span style={{color:'white', fontSize:16, wordWrap:'break-word'}}>
+                            <p style={{color:'white', fontSize:16, wordWrap:'break-word'}}>
                                 {Website}
-                            </span>
+                            </p>
                         </a>
                     
                     </div>
                     <div style={{width:'40%', contentAlign:'center', justifyContent:'center'}}>
-                        <span style={{color:'rgb(150,150,150)', fontSize:10}}>
+                        <p style={{color:'rgb(150,150,150)', fontSize:10, marginBottom:0}}>
                             QUALIFICATION
-                        </span>
-                        <br></br>
-                        <span style={{color:'white', fontSize:16}}>
+                        </p>
+                        <p style={{color:'white', fontSize:16}}>
                             {Qualification}
-                        </span>
+                        </p>
                         <br></br>
-                        <span style={{color:'rgb(150,150,150)', fontSize:10}}>
+                        <p style={{color:'rgb(150,150,150)', fontSize:10, marginBottom:0}}>
                             PROFESSIONAL INDEMNITY INSURANCE
-                        </span>
-                        <br></br>
-                        <span style={{color:'white', fontSize:16}}>
+                        </p>
+                        <p style={{color:'white', fontSize:16}}>
                             {PIInsurance}
-                        </span>
+                        </p>
                     
                     </div>
                 </div>
