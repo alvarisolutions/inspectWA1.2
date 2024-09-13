@@ -1098,5 +1098,49 @@
             "Property4": 0,
             "Property5": 0
         }
+    },
+    {
+        "Name": "Jessie Hayon",
+        "Phone": "0422553114",
+        "Website": "",
+        "Company": "Cooee Constructions",
+        "Qualification": "WA Registered Builder",
+        "Registration": "104103",
+        "PIInsurance": "1",
+        "Types": {
+            "Type1": 1,
+            "Type2": 1,
+            "Type3": 0,
+            "Type4": 0,
+            "Type5": 0,
+            "Type6": 0,
+            "Type7": 0,
+            "Type8": 0,
+            "Type9": 0,
+            "Type10": 0,
+            "Type11": 0,
+            "Type12": 0,
+            "Type13": 0
+        },
+        "Locations": {
+            "Location1": 0,
+            "Location2": 0,
+            "Location3": 1,
+            "Location4": 0,
+            "Location5": 0,
+            "Location7": 0,
+            "Location8": 0,
+            "Location9": 0,
+            "Location10": 0,
+            "Location11": 0,
+            "Location12": 1
+        },
+        "Properties": {
+            "Property1": 1,
+            "Property2": 1,
+            "Property3": 1,
+            "Property4": 1,
+            "Property5": 1
+        }
     }
 ]
