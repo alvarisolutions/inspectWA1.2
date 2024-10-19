@@ -17,7 +17,7 @@ import FooterBar from '../core/footerBar'
 import FooterBarMobile from '../core/footerBarMobile'
 
 
-import membershipForm from '../../assets/files/public/Membership Applciation Sept 2019 .pdf'
+import membershipForm from '../../assets/files/public/2024 Inspect WA Public Announcemnt MOU with Australian Society of Building Consultants (NSW Chapter).pdf'
 
 
 

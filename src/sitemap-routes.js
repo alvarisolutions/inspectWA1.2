@@ -1,9 +1,9 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Routes, Route } from 'react-router';
  
         
 export default (
-    <Route>
+    <Routes>
         <Route path="/" />
         <Route path="/about" />
         <Route path="/membership" />
@@ -11,5 +11,5 @@ export default (
         <Route path="/inspectors" />
         <Route path="/contact" />          
         <Route path="/media"  />   
-    </Route>
+    </Routes>
 );

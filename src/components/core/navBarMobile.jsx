@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link, withRouter } from 'react-router-dom'
+import { Route, Link } from 'react-router-dom'; // Removed 'withRouter'
 
 import { addtoken } from '../../actions/addtoken'
 import { removetoken } from '../../actions/removetoken'
@@ -194,4 +194,4 @@ class NavBarMobile extends Component {
 }
 
 
-export default withRouter(NavBarMobile)
+export default NavBarMobile

@@ -17,18 +17,19 @@ import FooterBarMobile from '../core/footerBarMobile'
 
 import './media.css'
 
-import paper1 from '../../assets/files/public/Inspect WA Press Release Sept 2019 .pdf'
-import paper2 from '../../assets/files/public/Delignification of Tile Battens.pdf'
-import paper3 from '../../assets/files/public/Elevated Moisture in Walls.pdf'
-import paper4 from '../../assets/files/public/Clarity in Pre Purchase Building Inspection Reports.pdf'
 
-import paper6 from '../../assets/files/public/Sagging ceilings.pdf'
-import paper7 from '../../assets/files/public/Party Walls.pdf'
+import paper1 from '../../assets/files/public/1 Inspect WA Press Release Sept 2019.pdf'
+import paper2 from '../../assets/files/public/4 Delignification of Tile Battens.pdf'
+import paper3 from '../../assets/files/public/3 Elevated Moisture in Walls.pdf'
+import paper4 from '../../assets/files/public/2 Clarity in Pre Purchase Building Inspection Reports.pdf'
 
-import paper8 from '../../assets/files/public/Downlighting & Insulation.pdf'
-import paper9 from '../../assets/files/public/Rendered Finishes as an Alternative to Weep holes.pdf'
+import paper6 from '../../assets/files/public/6 Sagging ceilings.pdf'
+import paper7 from '../../assets/files/public/5 Party Walls.pdf'
 
-import paper10 from '../../assets/files/public/Open Letter to The Minister.pdf'
+import paper8 from '../../assets/files/public/8 Downlighting & Insulation.pdf'
+import paper9 from '../../assets/files/public/7 Rendered Finishes as an Alternative to Weep holes.pdf'
+
+import paper10 from '../../assets/files/public/9 Open Letter to The Minister.pdf'
 
 import paper11 from '../../assets/files/public/11 Pre Purchase Inspection Report.pdf'
 import paper12 from '../../assets/files/public/12 Structural Defects Notices.pdf'

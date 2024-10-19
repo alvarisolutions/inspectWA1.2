@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import { Spring } from "react-spring/renderprops";
+import { Spring } from "react-spring";
 
 class Loading extends PureComponent {
   static style = ({ props }) => ({

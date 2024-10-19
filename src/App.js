@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
 
-import Firebase from './Firebase.js'
-
 import NavBar from './components/core/navBar'
 import HomeBody from './components/pages/home'
 import FooterBar from './components/core/footerBar'

@@ -1,66 +1,54 @@
+// Members.js
+
 import React, { Component } from 'react';
 import {
     BrowserView,
     MobileView,
     isBrowser,
     isMobile
-  } from "react-device-detect";
-import { Route, Link } from 'react-router-dom'
-import firebase from '../../Firebase'
+} from "react-device-detect";
+import { Route, Link } from 'react-router-dom';
+import { database } from '../../Firebase'; // Updated import
+import { ref, onValue, set, get } from 'firebase/database'; // Import necessary functions
 
-import NavBar from '../core/navBar'
-import NavBarMobile from '../core/navBarMobile'
+import NavBar from '../core/navBar';
+import NavBarMobile from '../core/navBarMobile';
 
-import FooterBar from '../core/footerBar'
-import FooterBarMobile from '../core/footerBarMobile'
+import FooterBar from '../core/footerBar';
+import FooterBarMobile from '../core/footerBarMobile';
 
-import Loading from '../../components/loading.js'
+import Loading from '../../components/loading.js';
 
-import './members.css'
+import './members.css';
 
-import paper1 from '../../assets/files/private/Position Paper 1 2019 Delignification of Roof Tile Battens Approved.pdf'
-import paper2 from '../../assets/files/private/Position Paper 2 2019 Elevated Moisture Levels in Masonay Walls Approve.._.pdf'
-import paper3 from '../../assets/files/private/Position Paper 3 2019 Pre Purchase Builing Insepction Report.._.pdf'
+// Importing documents
+import paper1 from '../../assets/files/private/Position Paper 1 2019 Delignification of Roof Tile Battens Approved.pdf';
+import paper2 from '../../assets/files/private/Position Paper 2 2019 Elevated Moisture Levels in Masonay Walls Approve.._.pdf';
+import paper3 from '../../assets/files/private/Position Paper 3 2019 Pre Purchase Builing Insepction Report.._.pdf';
+import paper6 from '../../assets/files/private/Position Paper 6 2019 Sagging ceilings.pdf';
+import paper7 from '../../assets/files/private/Position Paper 7 Party and Firewalls Final.pdf';
+import paper8 from '../../assets/files/private/Position Paper 8 DownLighting & Insulation.pdf';
+import paper9 from '../../assets/files/private/Position Paper 9 Texture Rendered Finishes as an Alternative to Weep holes.pdf';
+import paper11 from '../../assets/files/private/11 Pre Purchase Inspection Report.pdf';
+import paper12 from '../../assets/files/private/12 Structural Defects Notices.pdf';
+import paper13 from '../../assets/files/private/13 Defining Residential Buildings.pdf';
+import paper14 from '../../assets/files/private/14 RCDs Smoke Alarms Electrical Testing.pdf';
+import paper15 from '../../assets/files/private/15 InspectWA Responds to CRIS Reforms.pdf';
+import paper16 from '../../assets/files/private/16 Wet Area Waterproofing CPD Presentation.pdf';
+import paper17 from '../../assets/files/private/17 Roof Leaks and Structural Damage.pdf';
+import paper18 from '../../assets/files/private/18 InspectWA Position Paper.pdf';
+import paper19 from '../../assets/files/private/19 Pre purchase structural inspections.pdf';
+import paper20 from '../../assets/files/private/20 Tie Downs Part 1.pdf';
+import paper21 from '../../assets/files/private/21 Tie Downs Part 2.pdf';
+import paper22 from '../../assets/files/private/22 Tile Presentation.pdf';
+import paper23 from '../../assets/files/private/23 Logo Policy.pdf';
+import paper24 from '../../assets/files/private/24 Pre Purchase Building Inspection Annexures.pdf';
+import paper25 from '../../assets/files/private/25 Restricted access.pdf';
+import paper26 from '../../assets/files/private/26 Inspector engagement with builders on site.pdf';
+import paper27 from '../../assets/files/private/27 Residential Property Purchase Contract - Observations.pdf';
+import paper28 from '../../assets/files/private/28 Access for Pre Purcahse Building Inspections.pdf';
 
-import paper6 from '../../assets/files/private/Position Paper 6 2019 Sagging ceilings.pdf'
-import paper7 from '../../assets/files/private/Position Paper 7 Party and Firewalls Final.pdf'
-
-import paper8 from '../../assets/files/private/Position Paper 8 DownLighting & Insulation.pdf'
-import paper9 from '../../assets/files/private/Position Paper 9 Texture Rendered Finishes as an Alternative to Weep holes.pdf'
-
-import paper11 from '../../assets/files/private/11 Pre Purchase Inspection Report.pdf'
-import paper12 from '../../assets/files/private/12 Structural Defects Notices.pdf'
-import paper13 from '../../assets/files/private/13 Defining Residential Buildings.pdf'
-
-import paper14 from '../../assets/files/private/14 RCDs Smoke Alarms Electrical Testing.pdf'
-import paper15 from '../../assets/files/private/15 InspectWA Responds to CRIS Reforms.pdf'
-
-import paper16 from '../../assets/files/private/16 Wet Area Waterproofing CPD Presentation.pdf'
-
-import paper17 from '../../assets/files/private/17 Roof Leaks and Structural Damage.pdf'
-import paper18 from '../../assets/files/private/18 InspectWA Position Paper.pdf'
-
-import paper19 from '../../assets/files/private/19 Pre purchase structural inspections.pdf'
-import paper20 from '../../assets/files/private/20 Tie Downs Part 1.pdf'
-
-import paper21 from '../../assets/files/private/21 Tie Downs Part 2.pdf'
-
-import paper22 from '../../assets/files/private/22 Tile Presentation.pdf'
-
-import paper23 from '../../assets/files/private/23 Logo Policy.pdf'
-
-import paper24 from '../../assets/files/private/24 Pre Purchase Building Inspection Annexures.pdf'
-
-import paper25 from '../../assets/files/private/25 Restricted access.pdf'
-
-import paper26 from '../../assets/files/private/26 Inspector engagement with builders on site.pdf'
-
-import paper27 from '../../assets/files/private/27 Residential Property Purchase Contract - Observations.pdf'
-
-import paper28 from  '../../assets/files/private/28 Access for Pre Purcahse Building Inspections.pdf'
-
-
-class Members extends React.Component {
+class Members extends Component {
     constructor(props) {
         super(props);
         
@@ -70,131 +58,35 @@ class Members extends React.Component {
             email: '', 
             password: '',
             changePasswordVisible: false,
-            passwordNew1:'',
-            passwordNew2:''
-        }  
+            passwordNew1: '',
+            passwordNew2: ''
+        };
     } 
   
-    
+  
+    // Handler functions
     onEmailChange = (event) => {
-        this.setState({email: event.target.value})
+        this.setState({ email: event.target.value });
     }
     
     onPasswordChange = (event) => {
-        this.setState({password: event.target.value})
-    }
-
-    changePasswordShow = () => {
-        this.setState({
-            changePasswordVisible:true
-        })
-    }
-
-    changePasswordHide = () => {
-        this.setState({
-            changePasswordVisible:false
-        })
+        this.setState({ password: event.target.value });
     }
 
     onPasswordNew1Change = (event) => {
-        this.setState({passwordNew1: event.target.value})
+        this.setState({ passwordNew1: event.target.value });
     }
     
     onPasswordNew2Change = (event) => {
-        this.setState({passwordNew2: event.target.value})
+        this.setState({ passwordNew2: event.target.value });
     }
     
-    mobileStyles = {
-        banner: {
-            width:'100%',
-            height: '100vh', //Covers initial screen (Not fixed in place),
-            contentAlign: 'center',
-            textAlign: 'center',
-            marginTop:'10vh'
-        },
-        BodySection: {
-            backgroundColor:'rgba(0,0,0,0.2)',
-            marginTop:'10vh',
-            minHeight:'90vh'
-        },
-        BodySectionHeaderText: {
-            color:'rgb(220,220,220)',
-            padding:20
-        },
-        BodySectionTextDiv: {
-            color:'rgb(255,255,255)',
-            textAlign:'left',
-            fontSize:'1rem',
-            lineHeight:'1.2rem',
-            width:'90vw',
-            marginLeft:'5vw',
-        },
-        membersContainer: {
-            width: '100%',
-        },
-        calendarContainer: {
-            width: '90%',
-            margin:'5%',
-            marginTop:20,
-            textAlign:'center',
-            
-        },
-        docLibraryContainer: {
-            width: '90%',
-            margin:'5%',
-            marginTop:20,
-            textAlign:'center'
-        },
-
-        
+    changePasswordShow = () => {
+        this.setState({ changePasswordVisible: true });
     }
 
-    styles = {
-        banner: {
-            width:'100%',
-            height: '100vh', //Covers initial screen (Not fixed in place),
-            contentAlign: 'center',
-            textAlign: 'center',
-            marginTop:'10vh'
-        },
-        BodySection: {
-            backgroundColor:'rgba(0,0,0,0.2)',
-            marginTop:'10vh',
-            minHeight:'90vh'
-        },
-        BodySectionHeaderText: {
-            color:'rgb(220,220,220)',
-            padding:20
-        },
-        BodySectionTextDiv: {
-            color:'rgb(255,255,255)',
-            textAlign:'left',
-            fontSize:'1rem',
-            lineHeight:'1.2rem',
-            width:'90vw',
-            marginLeft:'5vw',
-        },
-        membersContainer: {
-            width: '100%',
-            borderRadius: 10,
-            backgroundColor: 'rgba(100,100,100,0.2)',
-            display:'flex',
-        },
-        calendarContainer: {
-            width: '40%',
-            margin:'5%',
-            marginTop:20,
-            textAlign:'center',
-            
-        },
-        docLibraryContainer: {
-            width: '40%',
-            margin:'5%',
-            marginTop:20,
-            textAlign:'center'
-        },
-
-        
+    changePasswordHide = () => {
+        this.setState({ changePasswordVisible: false });
     }
 
     handleClick = (msg) => {
@@ -205,174 +97,202 @@ class Members extends React.Component {
 
     renderLoader = () => {
         if(this.state.loadingVisible) {
-            return(
-                <Loading />
-            )
+            return <Loading />;
         } else {
             return null;
         }
     }
 
+    // Method to submit login
     submitLogin = () => {
-        const that = this;
-        this.setState({loadingVisible:true});
+        this.setState({ loadingVisible: true });
 
-        //Make the Firebase call
-        let ref = firebase.database().ref('/');
-        ref.on('value', function(snapshot) {
-            let authCheck = false;            
-            let dataObj = snapshot.val();
-            for(var i = 0; i < dataObj.users.length; i++) {
-                try {
-                    if((that.state.email === dataObj.users[i].email) && (that.state.password === dataObj.users[i].password)) {
-                        that.setState({
-                            loadingVisible: false, 
-                            isAuthenticated: true
-                        })
-                    }
-                } catch(e) {}
-            }
-            setTimeout(function(){ 
-                that.setState({
-                    loadingVisible: false
-                })
-                if(that.state.isAuthenticated == false) {
-                    alert('Credentials are incorrect, please try again.')
-                } 
-            }, 2000);
-        }); 
-    }
+        // Reference to '/users' node
+        const usersRef = ref(database, '/users');
+        
+        // Fetch data once
+        get(usersRef)
+            .then((snapshot) => {
+                const dataObj = snapshot.val();
+                let isAuthenticated = false;
 
-    
-
-    submitChangePassword = () => {
-        const that = this;
-        if((this.state.passwordNew1 === this.state.passwordNew2) && (this.state.passwordNew1 !== '')) {
-            this.setState({loadingVisible:true});
-
-            //Make the Firebase call
-            let ref = firebase.database().ref('/');
-            ref.on('value', function(snapshot) {
-                let dataObj = snapshot.val();
-                var originalObj = dataObj.users
-                var newObj = dataObj.users
-                for(var i = 0; i < originalObj.length; i++) {
-                    if((that.state.email === originalObj[i].email) && (that.state.password === originalObj[i].password)) {
-                        newObj[i].password = that.state.passwordNew1 
-                        alert('Password has successfully been changed')
-                        //Send to database and wrap up
-                        firebase.database().ref('/users').set(newObj)
-                        that.setState({
-                            loadingVisible: false, 
-                            isAuthenticated: true
-                        })
+                if (dataObj && dataObj.users) {
+                    for(let i = 0; i < dataObj.users.length; i++) {
+                        const user = dataObj.users[i];
+                        if(user.email === this.state.email && user.password === this.state.password) {
+                            isAuthenticated = true;
+                            break;
+                        }
                     }
                 }
-                setTimeout(function(){ 
-                    that.setState({
-                        loadingVisible: false
-                    })
-                    if(that.state.isAuthenticated == false) {
-                        alert('Existing email and password is incorrect, please try again.')
-                    } 
+
+                // Simulate loading delay
+                setTimeout(() => { 
+                    this.setState({
+                        loadingVisible: false,
+                        isAuthenticated: isAuthenticated
+                    }, () => {
+                        if(!isAuthenticated) {
+                            alert('Credentials are incorrect, please try again.');
+                        }
+                    });
                 }, 2000);
-            }); 
-        } else {
-            alert('Your new password fields do not match, please ensure they are the same and resubmit.')
-        }        
+            })
+            .catch((error) => {
+                console.error("Error fetching users:", error);
+                this.setState({ loadingVisible: false });
+                alert('An error occurred while trying to authenticate. Please try again.');
+            });
     }
     
+    // Method to submit password change
+    submitChangePassword = () => {
+        const { email, password, passwordNew1, passwordNew2 } = this.state;
+        if(passwordNew1 !== passwordNew2 || passwordNew1 === '') {
+            alert('Your new password fields do not match, please ensure they are the same and resubmit.');
+            return;
+        }
+
+        this.setState({ loadingVisible: true });
+
+        // Reference to '/users' node
+        const usersRef = ref(database, '/users');
+        
+        // Fetch data once
+        get(usersRef)
+            .then((snapshot) => {
+                const dataObj = snapshot.val();
+                let isAuthenticated = false;
+                let updatedUsers = [];
+
+                if(dataObj && dataObj.users) {
+                    updatedUsers = dataObj.users.map(user => {
+                        if(user.email === email && user.password === password) {
+                            isAuthenticated = true;
+                            return { ...user, password: passwordNew1 };
+                        }
+                        return user;
+                    });
+                }
+
+                if(isAuthenticated) {
+                    // Update '/users' node with new passwords
+                    set(usersRef, updatedUsers)
+                        .then(() => {
+                            alert('Password has successfully been changed');
+                            this.setState({
+                                loadingVisible: false,
+                                isAuthenticated: true,
+                                changePasswordVisible: false,
+                                password: '',
+                                passwordNew1: '',
+                                passwordNew2: ''
+                            });
+                        })
+                        .catch((error) => {
+                            console.error("Error updating password:", error);
+                            this.setState({ loadingVisible: false });
+                            alert('An error occurred while updating the password. Please try again.');
+                        });
+                } else {
+                    // Simulate loading delay for unsuccessful attempt
+                    setTimeout(() => { 
+                        this.setState({
+                            loadingVisible: false
+                        });
+                        alert('Existing email and password is incorrect, please try again.');
+                    }, 2000);
+                }
+            })
+            .catch((error) => {
+                console.error("Error fetching users for password change:", error);
+                this.setState({ loadingVisible: false });
+                alert('An error occurred while trying to change the password. Please try again.');
+            });
+    }
     
+    // Render content based on authentication and device type
     renderContent = () => {
         if(!isMobile) {
             if(!this.state.isAuthenticated) {
                 if(this.state.changePasswordVisible) {
                     return (
                         <div>                        
-                            <div style={{backgroundColor:'rgba(0,0,0,0.6)', zIndex:20, height:'90vh', marginTop:'10vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
-                                <div style={{width:'30%',}}> 
+                            <div style={styles.overlay}>
+                                <div style={styles.formContainer}> 
                                 
-                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}}></img>
-                                                                    
-                                    <span style={{color:'white', fontSize:18,}}>
+                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}} alt="Logo" />
+                                                                        
+                                    <span style={styles.formTitle}>
                                         Complete the form below to change your password
                                     </span>
-                                    <br />
-                                    <br />
-        
-                                    <span style={{color:'white'}}>
+                                    <br /><br />
+
+                                    <span style={styles.label}>
                                         Email:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onEmailChange.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onEmailChange}
+                                        style={styles.input} 
                                         type="text"
                                         placeholder="Your email.." />
-                                    <br />
-                                    <br />  
-                                    <span style={{color:'white'}}>
+                                    <br /><br />  
+                                    
+                                    <span style={styles.label}>
                                         Old password:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onPasswordChange.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onPasswordChange}
+                                        style={styles.input} 
                                         type="password"
                                         placeholder="Your password.." />
-                                    <br />
-                                    <br />  
-                                    <span style={{color:'white'}}>
+                                    <br /><br />  
+                                    
+                                    <span style={styles.label}>
                                         New password:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onPasswordNew1Change.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onPasswordNew1Change}
+                                        style={styles.input} 
                                         type="password"
                                         placeholder="New password.." />
-                                    <br />
-                                    <br />  
-                                    <span style={{color:'white'}}>
+                                    <br /><br />  
+                                    
+                                    <span style={styles.label}>
                                         Retype new password:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onPasswordNew2Change.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onPasswordNew2Change}
+                                        style={styles.input} 
                                         type="password"
                                         placeholder="Retype new password.." />
-                                    <br />
-                                    <br />
+                                    <br /><br />
                                     
-                                    <div style={{display:'flex', flexDirection:'row'}}>
-                                        <div style={{display:'flex', flex:1, textAlign:'center', justifyContent:'center'}}>
-                                            <div 
-                                                style={{padding:10, backgroundColor:'#4CAF50', borderRadius:5, color:'white', width:'80%', cursor:'pointer'}} 
-                                                onClick={this.submitChangePassword} >                         
-                                                <span style={{color:'white'}}>
-                                                    Confirm
-                                                </span>
-                                            </div>
+                                    <div style={styles.buttonContainer}>
+                                        <div 
+                                            style={styles.confirmButton} 
+                                            onClick={this.submitChangePassword} >                         
+                                            <span style={styles.buttonText}>
+                                                Confirm
+                                            </span>
                                         </div>
-                                        <div style={{display:'flex', flex:1, textAlign:'center', justifyContent:'center'}}>
-                                            <div 
-                                                style={{padding:10, backgroundColor:'#e74c3c', borderRadius:5, color:'white', width:'80%', cursor:'pointer'}} 
-                                                onClick={this.changePasswordHide} >                         
-                                                <span style={{color:'white'}}>
-                                                    Cancel
-                                                </span>
-                                            </div>
+                                        <div 
+                                            style={styles.cancelButton} 
+                                            onClick={this.changePasswordHide} >                         
+                                            <span style={styles.buttonText}>
+                                                Cancel
+                                            </span>
                                         </div>
-
                                     </div>
                                 </div>
-        
                             </div>                
-                            <div className="App" style={{width:"100%", margin:0, padding:0}}>
-                                <div id="background" style={{width:"100%", }}>
+                            <div className="App" style={styles.appContainer}>
+                                <div id="background" style={styles.background}>
                                     <NavBar />
-            
                                     <FooterBar />
                                 </div>    
                             </div>
@@ -381,79 +301,73 @@ class Members extends React.Component {
                 } else {
                     return (
                         <div>                        
-                            <div style={{backgroundColor:'rgba(0,0,0,0.6)', zIndex:20, height:'90vh', marginTop:'10vh', display:'flex', alignItems:'center', justifyContent:'center'}}>
-                                <div style={{width:'30%',}}> 
+                            <div style={styles.overlay}>
+                                <div style={styles.formContainer}> 
                                 
-                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}}></img>
-                                                                    
-                                    <span style={{color:'white', fontSize:18,}}>
+                                    <img src={require("../../assets/images/logoActual.png")} style={{width:'100%'}} alt="Logo" />
+                                                                        
+                                    <span style={styles.formTitle}>
                                         Please login to access the members section
                                     </span>
-                                    <br />
-                                    <br />
-        
-                                    <span style={{color:'white'}}>
+                                    <br /><br />
+
+                                    <span style={styles.label}>
                                         Email:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onEmailChange.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onEmailChange}
+                                        style={styles.input} 
                                         type="text"
                                         placeholder="Your email.." />
-                                    <br />
-                                    <br />  
-                                    <span style={{color:'white'}}>
+                                    <br /><br />  
+                                    
+                                    <span style={styles.label}>
                                         Password:
                                     </span>
                                     <br />
                                     <input 
-                                        onChange={this.onPasswordChange.bind(this)}
-                                        style={{backgroundColor:'white', borderRadius:5,border:'none', textIndent:10, padding:5, width:'100%'}} 
+                                        onChange={this.onPasswordChange}
+                                        style={styles.input} 
                                         type="password"
                                         placeholder="Your password.." />
-                                    <br />
-                                    <br />
+                                    <br /><br />
                                     
-                                    <div style={{width:'100%', textAlign:'center', display:'flex', justifyContent:'center'}}>
+                                    <div style={styles.loginButtonContainer}>
                                         <div 
-                                            style={{padding:10, backgroundColor:'#4CAF50', borderRadius:5, color:'white', width:'40%', cursor:'pointer'}} 
+                                            style={styles.submitButton} 
                                             onClick={this.submitLogin} >                         
-                                            <span style={{color:'white'}}>
+                                            <span style={styles.buttonText}>
                                                 Submit
                                             </span>
                                         </div>
                                     </div>
                                 </div>
-        
                             </div>                
-                            <div className="App" style={{width:"100%", margin:0, padding:0}}>
-                                <div id="background" style={{width:"100%", }}>
+                            <div className="App" style={styles.appContainer}>
+                                <div id="background" style={styles.background}>
                                     <NavBar />
-            
                                     <FooterBar />
                                 </div>    
                             </div>
                         </div>                
                     );
-
                 }
-                
             } else {            
                 return (                
-                    <div className="App" style={{width:"100%", margin:0, padding:0}}>
-                        <div id="background" style={{width:"100%", }}>
+                    <div className="App" style={styles.appContainer}>
+                        <div id="background" style={styles.background}>
                             <NavBar isAuthenticated={this.state.isAuthenticated} authHandler={this.authHandler}/>
 
                             <div>    
-                                <div style={this.styles.BodySection}>
-                                    <h1 style={this.styles.BodySectionHeaderText}>
+                                <div style={styles.BodySection}>
+                                    <h1 style={styles.BodySectionHeaderText}>
                                         InspectWA members area
                                     </h1>
-                                    <div style={this.styles.BodySectionTextDiv}>
+                                    <div style={styles.BodySectionTextDiv}>
                                         
-                                        <div style={this.styles.membersContainer}>
-                                            <div style={this.styles.calendarContainer}>
+                                        <div style={styles.membersContainer}>
+                                            <div style={styles.calendarContainer}>
                                                 <h3>
                                                     Events Calendar
                                                 </h3>
@@ -465,7 +379,26 @@ class Members extends React.Component {
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr><td>Committee Meeting</td><td>Tuesday December 12th 2023</td></tr><tr><td>AGM & Christmas wind-up</td><td>Tuesday November 28th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday November 14th 2023</td></tr><tr><td>General members meeting – TBA</td><td>Tuesday October 24th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday October 10th 2023</td></tr><tr><td>Collate renewals, issue renewal invoices</td><td>Tuesday October 3rd 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday September 12th 2023</td></tr><tr><td>Issue renewal declarations</td><td>Friday September 1st  2023</td></tr><tr><td>General members meeting – TBA</td><td>Tuesday August 22nd 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday August 8th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday July 11th 2023</td></tr><tr><td>General members meeting – TBA</td><td>Tuesday June 27th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday June 13th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday May 10th 2023</td></tr><tr><td>General members meeting – Building Commission Inspectorate</td><td>Tuesday May 3rd 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday April 11th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday March 14th\ 2023</td></tr><tr><td>General members meeting – Rapid Solutions confirmed</td><td>Tuesday February 28th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday February 14th 2023</td></tr><tr><td>Committee Meeting</td><td>Tuesday January 18th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday December 12th 2023</td></tr>
+                                                        <tr><td>AGM & Christmas wind-up</td><td>Tuesday November 28th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday November 14th 2023</td></tr>
+                                                        <tr><td>General members meeting – TBA</td><td>Tuesday October 24th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday October 10th 2023</td></tr>
+                                                        <tr><td>Collate renewals, issue renewal invoices</td><td>Tuesday October 3rd 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday September 12th 2023</td></tr>
+                                                        <tr><td>Issue renewal declarations</td><td>Friday September 1st  2023</td></tr>
+                                                        <tr><td>General members meeting – TBA</td><td>Tuesday August 22nd 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday August 8th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday July 11th 2023</td></tr>
+                                                        <tr><td>General members meeting – TBA</td><td>Tuesday June 27th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday June 13th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday May 10th 2023</td></tr>
+                                                        <tr><td>General members meeting – Building Commission Inspectorate</td><td>Tuesday May 3rd 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday April 11th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday March 14th\ 2023</td></tr>
+                                                        <tr><td>General members meeting – Rapid Solutions confirmed</td><td>Tuesday February 28th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday February 14th 2023</td></tr>
+                                                        <tr><td>Committee Meeting</td><td>Tuesday January 18th 2023</td></tr>
 
                                                         <tr>
                                                             <td>Members Forum - Tiling</td>
@@ -480,7 +413,7 @@ class Members extends React.Component {
                                                             <td>July 2020</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Members Forum - Waterpoofing and various</td>
+                                                            <td>Members Forum - Waterproofing and various</td>
                                                             <td>26 May 2020</td>
                                                         </tr>
                                                         <tr>
@@ -504,7 +437,7 @@ class Members extends React.Component {
                                                 </table>
 
                                             </div>
-                                            <div style={this.styles.docLibraryContainer}>
+                                            <div style={styles.docLibraryContainer}>
                                                 <h3>
                                                     Document library
                                                 </h3>
@@ -812,15 +745,14 @@ class Members extends React.Component {
             }
         } else {
             return (
-                <div className="App" style={{width:"100%", margin:0, padding:0}}>
-                    <div id="background" style={{width:"100%", }}>
+                <div className="App" style={styles.appContainer}>
+                    <div id="background" style={styles.background}>
                         <NavBarMobile isAuthenticated={this.state.isAuthenticated} authHandler={this.authHandler}/>
-                        <div style={{width:'100%',height: '100vh',contentAlign: 'center',textAlign: 'center'}}>   
-                            <img src={require("../../assets/images/logoActual.png")} style={{width:'80vw', marginTop:'20vh'}}></img>
-                            <br></br> 
-                            <br></br>
-                            <div style={{ display: 'inline-block', width:'90vw'}}>
-                                <p style={{fontSize:'2vh',color:'rgb(220,220,220)',cursor: 'pointer'}}>
+                        <div style={styles.mobileContent}>   
+                            <img src={require("../../assets/images/logoActual.png")} style={styles.mobileLogo} alt="Logo" />
+                            <br /><br />
+                            <div style={styles.mobileMessageContainer}>
+                                <p style={styles.mobileMessage}>
                                     The members section is not available on mobile devices. Please use a desktop computer to access this section.    
                                 </p>
                                 
@@ -829,7 +761,6 @@ class Members extends React.Component {
                         <FooterBarMobile />
                     </div>
                 </div>
-                
                 
             );
         
@@ -843,10 +774,142 @@ class Members extends React.Component {
                 {this.renderLoader()}
                 {this.renderContent()}
             </div>
-        )
+        );
     }
 
-  
 }
-export default Members
 
+// Define your styles outside the component for cleaner code
+const styles = {
+    overlay: {
+        backgroundColor: 'rgba(0,0,0,0.6)', 
+        zIndex: 20, 
+        height: '90vh', 
+        marginTop: '10vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center'
+    },
+    formContainer: {
+        width: '30%',
+        color: 'white'
+    },
+    formTitle: {
+        color: 'white', 
+        fontSize: 18,
+    },
+    label: {
+        color: 'white'
+    },
+    input: {
+        backgroundColor: 'white', 
+        borderRadius: 5,
+        border: 'none', 
+        textIndent: 10, 
+        padding: 5, 
+        width: '100%'
+    },
+    buttonContainer: {
+        display: 'flex', 
+        flexDirection: 'row',
+        marginTop: '10px'
+    },
+    confirmButton: {
+        padding: 10, 
+        backgroundColor: '#4CAF50', 
+        borderRadius: 5, 
+        color: 'white', 
+        width: '80%', 
+        cursor: 'pointer',
+        marginRight: '10px'
+    },
+    cancelButton: {
+        padding: 10, 
+        backgroundColor: '#e74c3c', 
+        borderRadius: 5, 
+        color: 'white', 
+        width: '80%', 
+        cursor: 'pointer'
+    },
+    buttonText: {
+        color: 'white'
+    },
+    appContainer: {
+        width: "100%", 
+        margin: 0, 
+        padding: 0
+    },
+    background: {
+        width: "100%"
+    },
+    BodySection: {
+        backgroundColor: 'rgba(0,0,0,0.2)',
+        marginTop: '10vh',
+        minHeight: '90vh'
+    },
+    BodySectionHeaderText: {
+        color: 'rgb(220,220,220)',
+        padding: 20
+    },
+    BodySectionTextDiv: {
+        color: 'rgb(255,255,255)',
+        textAlign: 'left',
+        fontSize: '1rem',
+        lineHeight: '1.2rem',
+        width: '90vw',
+        marginLeft: '5vw',
+    },
+    membersContainer: {
+        width: '100%',
+        borderRadius: 10,
+        backgroundColor: 'rgba(100,100,100,0.2)',
+        display: 'flex',
+    },
+    calendarContainer: {
+        width: '40%',
+        margin: '5%',
+        marginTop: 20,
+        textAlign: 'center',
+    },
+    docLibraryContainer: {
+        width: '40%',
+        margin: '5%',
+        marginTop: 20,
+        textAlign: 'center'
+    },
+    loginButtonContainer: {
+        width: '100%', 
+        textAlign: 'center', 
+        display: 'flex', 
+        justifyContent: 'center'
+    },
+    submitButton: {
+        padding: 10, 
+        backgroundColor: '#4CAF50', 
+        borderRadius: 5, 
+        color: 'white', 
+        width: '40%', 
+        cursor: 'pointer'
+    },
+    mobileContent: {
+        width: '100%',
+        height: '100vh',
+        contentAlign: 'center',
+        textAlign: 'center'
+    },
+    mobileLogo: {
+        width: '80vw',
+        marginTop: '20vh'
+    },
+    mobileMessageContainer: {
+        display: 'inline-block',
+        width: '90vw'
+    },
+    mobileMessage: {
+        fontSize: '2vh',
+        color: 'rgb(220,220,220)',
+        cursor: 'pointer'
+    }
+};
+
+export default Members;
