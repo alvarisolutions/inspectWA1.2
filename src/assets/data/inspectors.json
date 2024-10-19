@@ -132,50 +132,6 @@
         }
     },
     {
-        "Name": "Brian Gray",
-        "Phone": "9240 8855",
-        "Website": "www.houspect.com.au/wa",
-        "Company": "Houspect WA",
-        "Qualification": "WA Registered Builder ",
-        "Registration": "11504",
-        "PIInsurance": "1",
-        "Types": {
-            "Type1": 1,
-            "Type2": 1,
-            "Type3": 1,
-            "Type4": 1,
-            "Type5": 1,
-            "Type6": 1,
-            "Type7": 1,
-            "Type8": 1,
-            "Type9": 1,
-            "Type10": 1,
-            "Type11": 1,
-            "Type12": 1,
-            "Type13": 1
-        },
-        "Locations": {
-            "Location1": 1,
-            "Location2": 0,
-            "Location3": 0,
-            "Location4": 0,
-            "Location5": 0,
-            "Location7": 0,
-            "Location8": 0,
-            "Location9": 0,
-            "Location10": 0,
-            "Location11": 0,
-            "Location12": 0
-        },
-        "Properties": {
-            "Property1": 1,
-            "Property2": 1,
-            "Property3": 1,
-            "Property4": 1,
-            "Property5": 1
-        }
-    },
-    {
         "Name": "Colin Merritt",
         "Phone": "9240 8855",
         "Website": "www.houspect.com.au/wa",

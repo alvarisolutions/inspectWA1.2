@@ -119,6 +119,7 @@ class Inspectors extends React.Component {
     }
 
     componentDidMount() {
+        console.log(InspectorsObject)
         //Pre-apply all checkboxes
             this.checkBoxTypeAll.current.checked = true
 
